@@ -1,7 +1,8 @@
 export PATH := $(PATH):$(HOME)/local/sdcc/bin
 
-MCU  = stm8s003f3
+MCU  = stm8s103f2
 ARCH = stm8
+ST_LINK = stlinkv2
 
 F_CPU   ?= 2000000
 TARGET  ?= main.ihx
@@ -46,7 +47,7 @@ size:
 	@stat -L -c %s $(TARGET).bin
 
 flash: $(TARGET)
-	stm8flash -c stlinkv2 -p $(MCU) -w $(TARGET)
+	stm8flash -c $(ST_LINK) -p $(MCU) -w $(TARGET)
 
 serial: $(TARGET)
 	stm8gal -p /dev/ttyUSB0 -w $(TARGET)
